@@ -1,20 +1,8 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charse        .btn-filled:hover {
-            background-color: #000000;
-            transform: translateY(-1px);
-            box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.12);
-        }TF-8">
-    <meta nam        .btn-bold-yellow:hover {
-            background-color: #FFB800;
-            transform: translateY(-1px);
-            box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.08);
-        }iewport"        .btn-stroke:hover {
-            background-color: transparent;
-            transform: translateY(-1px);
-            box-shadow: inset 0 0 0 1000px rgba(20, 19, 18, 0.12);
-        }tent="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TABASCO Button Components - Figma Icons</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -257,6 +245,137 @@
             height: 26px;
             flex-shrink: 0;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            /* Mobile padding and spacing */
+            .min-h-screen {
+                padding: 1rem;
+            }
+            
+            /* Smaller headings on mobile */
+            .text-4xl {
+                font-size: 2rem;
+                line-height: 2.5rem;
+            }
+            
+            .text-2xl {
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+            
+            /* Button adjustments for mobile */
+            .btn-base {
+                font-size: 18px;
+                height: 44px;
+                padding: 8px 10px;
+            }
+            
+            .btn-icon-left {
+                padding: 8px 10px 8px 8px;
+            }
+            
+            .btn-icon-right {
+                padding: 8px 8px 8px 10px;
+            }
+            
+            /* Stack buttons vertically on mobile */
+            .flex-wrap {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            /* Full width buttons on mobile */
+            .space-y-3 button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            /* Icon container adjustments for mobile */
+            .icon-container {
+                width: 22px;
+                height: 23px;
+            }
+            
+            .squircle-bg {
+                width: 22px;
+                height: 23px;
+            }
+            
+            /* Smaller icons on mobile */
+            .arrow-current,
+            .arrow-next {
+                width: 9px;
+                height: 12px;
+            }
+            
+            /* Mobile section spacing */
+            .mb-12 {
+                margin-bottom: 2rem;
+            }
+            
+            /* Mobile text center */
+            .space-y-3 {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Extra small mobile adjustments */
+            .min-h-screen {
+                padding: 0.75rem;
+            }
+            
+            .btn-base {
+                font-size: 16px;
+                height: 40px;
+                padding: 6px 8px;
+            }
+            
+            .btn-icon-left {
+                padding: 6px 8px 6px 6px;
+            }
+            
+            .btn-icon-right {
+                padding: 6px 6px 6px 8px;
+            }
+            
+            .text-4xl {
+                font-size: 1.75rem;
+                line-height: 2.25rem;
+            }
+            
+            .text-2xl {
+                font-size: 1.25rem;
+                line-height: 1.75rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            /* Tablet adjustments */
+            .flex-wrap {
+                justify-content: center;
+            }
+            
+            .space-y-3 {
+                min-width: 200px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            /* Desktop enhancements */
+            .max-w-6xl {
+                max-width: 80rem;
+            }
+            
+            .flex-wrap {
+                justify-content: flex-start;
+            }
+            
+            .space-y-3 {
+                min-width: 220px;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -273,7 +392,7 @@
             <!-- Primary CTA Buttons (Black) -->
             <section class="mb-12">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-6 font-pp-right">Primary CTA - Black</h2>
-                <div class="flex flex-wrap gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="space-y-3">
                         <p class="text-sm font-medium text-gray-600">Standaard</p>
                         <button class="btn-base btn-filled font-pp-right" onclick="showAlert('Primary CTA')">
@@ -328,7 +447,7 @@
             <!-- Warm Yellow Buttons -->
             <section class="mb-12">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-6 font-pp-right">Warm Yellow - 0,5px</h2>
-                <div class="flex flex-wrap gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="space-y-3">
                         <p class="text-sm font-medium text-gray-600">Standaard</p>
                         <button class="btn-base btn-warm-yellow font-pp-right" onclick="showAlert('Warm Yellow')">
@@ -383,7 +502,7 @@
             <!-- Warm Yellow V2 Buttons -->
             <section class="mb-12">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-6 font-pp-right">Warm Yellow V2 - 1px</h2>
-                <div class="flex flex-wrap gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="space-y-3">
                         <p class="text-sm font-medium text-gray-600">Standaard</p>
                         <button class="btn-base btn-warm-yellow-v2 font-pp-right" onclick="showAlert('Warm Yellow V2')">
@@ -512,7 +631,7 @@
             <!-- Stroke Buttons (Black Border) -->
             <section class="mb-12">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-6 font-pp-right">Stroke Buttons - Black</h2>
-                <div class="flex flex-wrap gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="space-y-3">
                         <p class="text-sm font-medium text-gray-600">Standaard</p>
                         <button class="btn-base btn-stroke font-pp-right" onclick="showAlert('Stroke button')">
@@ -546,7 +665,7 @@
                     
                     <div class="space-y-3">
                         <p class="text-sm font-medium text-gray-600">Icon Rechts</p>
-                        <button class="btn-base btn-stroke btn-icon-right font-pp-right w-full max-w-xs flex items-center gap-3" onclick="showAlert('Stroke icon rechts')">
+                        <button class="btn-base btn-stroke btn-icon-right font-pp-right flex items-center gap-3" onclick="showAlert('Stroke icon rechts')">
                             Rechts
                             <div class="icon-container">
                                 <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
