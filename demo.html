@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charse        .btn-filled:hover {
+            background-color: #000000;
+            transform: translateY(-1px);
+            box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.12);
+        }TF-8">
+    <meta nam        .btn-bold-yellow:hover {
+            background-color: #FFB800;
+            transform: translateY(-1px);
+            box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.08);
+        }iewport"        .btn-stroke:hover {
+            background-color: transparent;
+            transform: translateY(-1px);
+            box-shadow: inset 0 0 0 1000px rgba(20, 19, 18, 0.12);
+        }tent="width=device-width, initial-scale=1.0">
+    <title>TABASCO Button Components - Figma Icons</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* PP Right Grotesk Compact Variable Font */
+        @font-face {
+            font-family: 'PP Right Grotesk Compact';
+            src: url('./fonts/PPRightGroteskCompactVariable.ttf') format('truetype-variations');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        .font-pp-right {
+            font-family: 'PP Right Grotesk Compact', 'Inter', 'Arial', sans-serif;
+            font-weight: 700; /* Use standard font-weight for better compatibility */
+        }
+        
+        .font-pp-right-normal {
+            font-family: 'PP Right Grotesk Compact', 'Inter', 'Arial', sans-serif;
+            font-weight: 400; /* Normal weight */
+        }
+        
+        /* Button Base Styles */
+        .btn-base {
+            transition: all 0.2s ease;
+            border-radius: 12px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            font-size: 24px;
+            line-height: 1;
+            height: 49px;
+            padding: 10px 12px; /* Default padding */
+        }
+        
+        /* Icon positioning specific padding */
+        .btn-icon-left {
+            padding: 10px 12px 10px 10px; /* Smaller left padding when icon is on left */
+        }
+        
+        .btn-icon-right {
+            padding: 10px 10px 10px 12px; /* Smaller right padding when icon is on right */
+        }
+        
+        /* Primary CTA - Black Background */
+        .btn-filled {
+            background-color: #000000;
+            color: white;
+        }
+        
+        .btn-filled:hover {
+            background-color: #000000;
+            transform: translateY(-1px);
+            box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.12);
+        }
+        
+        /* Warm Yellow Variant */
+        .btn-warm-yellow {
+            background-color: #FFC421;
+            color: black;
+            border: 0.5px solid #B68706;
+        }
+        
+        .btn-warm-yellow:hover {
+            background-color: #FFC421;
+            transform: translateY(-1px);
+            border: 0.5px solid #B68706;
+            box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.12);
+        }
+
+        /* Warm Yellow Variant 2 - Copy for experimentation */
+        .btn-warm-yellow-v2 {
+            background-color: #FFC421;
+            color: black;
+            border: 0.5px solid #B68706;
+        }
+        
+        .btn-warm-yellow-v2:hover {
+            background-color: #FFC421;
+            transform: translateY(-1px);
+            border: 0.5px solid #B68706;
+            box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.12);
+        }
+
+                
+        /* Stroke Variants */
+        .btn-stroke {
+            background-color: transparent;
+            color: black;
+            border: 2px solid black;
+        }
+        
+        .btn-stroke:hover {
+            background-color: transparent;
+            transform: translateY(-1px);
+            box-shadow: inset 0 0 0 1000px rgba(20, 19, 18, 0.06);
+        }
+        
+        .btn-stroke-yellow {
+            background-color: transparent;
+            color: #FFC421;
+            border: 2px solid #FFC421;
+        }
+        
+        .btn-stroke-yellow:hover {
+            background-color: transparent;
+            color: #B68706;
+            transform: translateY(-1px);
+            box-shadow: inset 0 0 0 1000px rgba(255, 196, 33, 0.08);
+        }        /* Icon Animation - Sliding Arrow Effect */
+        .btn-base .icon-container {
+            position: relative;
+            width: 26px;
+            height: 27px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .btn-base .squircle-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 26px;
+            height: 27px;
+        }
+        
+        .btn-base .arrow-group {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-base .arrow-current,
+        .btn-base .arrow-next {
+            position: absolute;
+            width: 11px;
+            height: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-base .arrow-current {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .btn-base .arrow-next {
+            transform: translateX(-20px);
+            opacity: 1;
+        }
+        
+        /* Forward arrow hover effect */
+        .btn-base:hover .arrow-current {
+            transform: translateX(20px);
+            opacity: 1;
+        }
+        
+        .btn-base:hover .arrow-next {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* Backward arrow (for left-facing arrows) */
+        .btn-base .arrow-current.backward {
+            transform: scaleX(-1) translateX(0);
+            opacity: 1;
+        }
+        
+        .btn-base .arrow-next.backward {
+            transform: scaleX(-1) translateX(-20px);
+            opacity: 1;
+        }
+        
+        .btn-base:hover .arrow-current.backward {
+            transform: scaleX(-1) translateX(20px);
+            opacity: 1;
+        }
+        
+        .btn-base:hover .arrow-next.backward {
+            transform: scaleX(-1) translateX(0);
+            opacity: 1;
+        }
+        
+        /* Icon-only buttons get vertical movement on hover */
+        .btn-icon-only:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Icon-only buttons sizing */
+        .btn-icon-only {
+            padding: 12px;
+            width: fit-content;
+            height: fit-content;
+        }
+        
+        /* Hover state colors follow Figma specs */
+        .btn-stroke-yellow:hover .arrow-current path,
+        .btn-stroke-yellow:hover .arrow-next path {
+            fill: black; /* Arrow turns black on hover when background becomes yellow */
+        }
+        
+        .figma-icon {
+            width: 26px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen p-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4 font-pp-right">
+                    TABASCO Button Components
+                </h1>
+              
+            </div>
+
+            <!-- Primary CTA Buttons (Black) -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6 font-pp-right">Primary CTA - Black</h2>
+                <div class="flex flex-wrap gap-6">
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Standaard</p>
+                        <button class="btn-base btn-filled font-pp-right" onclick="showAlert('Primary CTA')">
+                            Tabasco CTA Button
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Icon Links</p>
+                        <button class="btn-base btn-filled btn-icon-left font-pp-right flex items-center gap-3" onclick="showAlert('Icon links')">
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="#FFC421"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current backward" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="black"/>
+                                    </svg>
+                                    <svg class="arrow-next backward" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="black"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            Tabasco CTA Button
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Icon Rechts</p>
+                        <button class="btn-base btn-filled btn-icon-right font-pp-right flex items-center gap-3" onclick="showAlert('Icon rechts')">
+                            Tabasco CTA Button
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="#FFC421"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="black"/>
+                                    </svg>
+                                    <svg class="arrow-next" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="black"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    
+
+                </div>
+            </section>
+
+            <!-- Warm Yellow Buttons -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6 font-pp-right">Warm Yellow - 0,5px</h2>
+                <div class="flex flex-wrap gap-6">
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Standaard</p>
+                        <button class="btn-base btn-warm-yellow font-pp-right" onclick="showAlert('Warm Yellow')">
+                            Tabasco CTA Button
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Icon Links</p>
+                        <button class="btn-base btn-warm-yellow btn-icon-left font-pp-right flex items-center gap-3" onclick="showAlert('Warm Yellow Icon links')">
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="black"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current backward" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFC421"/>
+                                    </svg>
+                                    <svg class="arrow-next backward" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFC421"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            Tabasco CTA Button
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Icon Rechts</p>
+                        <button class="btn-base btn-warm-yellow btn-icon-right font-pp-right flex items-center gap-3" onclick="showAlert('Warm Yellow Icon rechts')">
+                            Tabasco CTA Button
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="black"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFC421"/>
+                                    </svg>
+                                    <svg class="arrow-next" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFC421"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    
+
+                </div>
+            </section>
+
+            <!-- Warm Yellow V2 Buttons -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6 font-pp-right">Warm Yellow V2 - 1px</h2>
+                <div class="flex flex-wrap gap-6">
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Standaard</p>
+                        <button class="btn-base btn-warm-yellow-v2 font-pp-right" onclick="showAlert('Warm Yellow V2')">
+                            Tabasco CTA Button
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Icon Links</p>
+                        <button class="btn-base btn-warm-yellow-v2 btn-icon-left font-pp-right flex items-center gap-3" onclick="showAlert('Warm Yellow V2 Icon links')">
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="black"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current backward" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFC421"/>
+                                    </svg>
+                                    <svg class="arrow-next backward" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFC421"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            Tabasco CTA Button
+                        </button>
+                    </div>
+
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Icon Rechts</p>
+                        <button class="btn-base btn-warm-yellow-v2 btn-icon-right font-pp-right flex items-center gap-3" onclick="showAlert('Warm Yellow V2 Icon rechts')">
+                            Tabasco CTA Button
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="black"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFC421"/>
+                                    </svg>
+                                    <svg class="arrow-next" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFC421"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    
+
+                </div>
+            </section>
+
+            <!-- Bold Yellow Buttons -->
+             <!--
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6 font-pp-right">Bold Yellow</h2>
+                <div class="flex flex-wrap gap-6">
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Standaard</p>
+                        <button class="btn-base btn-bold-yellow font-pp-right" onclick="showAlert('Bold Yellow')">
+                            Tabasco CTA Button
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Icon Links</p>
+                        <button class="btn-base btn-bold-yellow btn-icon-left font-pp-right flex items-center gap-3" onclick="showAlert('Bold Yellow Icon links')">
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="black"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current backward" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFB800"/>
+                                    </svg>
+                                    <svg class="arrow-next backward" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFB800"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            Tabasco CTA Button
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Icon Rechts</p>
+                        <button class="btn-base btn-bold-yellow btn-icon-right font-pp-right flex items-center gap-3" onclick="showAlert('Bold Yellow Icon rechts')">
+                            Tabasco CTA Button
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="black"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFB800"/>
+                                    </svg>
+                                    <svg class="arrow-next" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFB800"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Alleen Icon</p>
+                        <button class="btn-base btn-bold-yellow btn-icon-only font-pp-right" onclick="showAlert('Bold Yellow Icon only')">
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="black"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFB800"/>
+                                    </svg>
+                                    <svg class="arrow-next" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="#FFB800"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            -->
+
+            <!-- Stroke Buttons (Black Border) -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6 font-pp-right">Stroke Buttons - Black</h2>
+                <div class="flex flex-wrap gap-6">
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Standaard</p>
+                        <button class="btn-base btn-stroke font-pp-right" onclick="showAlert('Stroke button')">
+                            Tabasco CTA Button
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Icon Links</p>
+                        <button class="btn-base btn-stroke btn-icon-left font-pp-right flex items-center gap-3" onclick="showAlert('Stroke icon links')">
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="#FFC421"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current backward" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="black"/>
+                                    </svg>
+                                    <svg class="arrow-next backward" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="black"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            Tabasco CTA Button
+                        </button>
+                    </div>
+                    
+
+                    
+                
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Icon Rechts</p>
+                        <button class="btn-base btn-stroke btn-icon-right font-pp-right w-full max-w-xs flex items-center gap-3" onclick="showAlert('Stroke icon rechts')">
+                            Rechts
+                            <div class="icon-container">
+                                <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="#FFC421"/>
+                                </svg>
+                                <div class="arrow-group">
+                                    <svg class="arrow-current" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="black"/>
+                                    </svg>
+                                    <svg class="arrow-next" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="black"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    
+
+                </div>
+            </section>
+
+        </div>
+
+        <!-- JavaScript for demo interactions -->
+        <script>
+            function showAlert(type) {
+                alert('Je hebt geklikt op: ' + type);
+            }
+            
+            // Helper function to create animated icon
+            function createAnimatedIcon(squircleColor, arrowColor, isBackward = false) {
+                const direction = isBackward ? 'backward' : 'forward';
+                return `
+                    <div class="icon-container">
+                        <svg class="squircle-bg" width="26" height="27" viewBox="0 0 26 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.00732422 13.0247C0.00732422 1.32466 1.30732 0.0246582 13.0073 0.0246582C24.7073 0.0246582 26.0073 1.32466 26.0073 13.0247C26.0073 24.7247 24.7073 26.0247 13.0073 26.0247C1.30732 26.0247 0.00732422 24.7247 0.00732422 13.0247Z" fill="${squircleColor}"/>
+                        </svg>
+                        <div class="arrow-group">
+                            <svg class="arrow-current ${direction}" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="${arrowColor}"/>
+                            </svg>
+                            <svg class="arrow-next ${direction}" width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.0506 7.21466L2.97951 14.2857L0.858195 12.1644L5.80794 7.21466L0.858195 2.26491L2.97951 0.143593L10.0506 7.21466Z" fill="${arrowColor}"/>
+                            </svg>
+                        </div>
+                    </div>
+                `;
+            }
+        </script>
+    </div>
+</body>
+</html>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_stroke_right">
+                                        <rect width="26" height="26" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <p class="text-sm font-medium text-gray-600">Stroke Icon Only</p>
+                        <button class="btn-stroke p-3 rounded-xl font-bold font-pp-right w-fit" onclick="showAlert('Stroke icon only')">
+                            <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.64165 7.91028L2.57058 14.9813L0.449259 12.86L5.39901 7.91028L0.449259 2.96053L2.57058 0.839211L9.64165 7.91028Z" fill="black"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="text-center">
+                <p class="text-gray-600 mb-4">
+                    🌶️ <strong>Perfect!</strong> Nu zijn alle icons correct uit Figma geladen
+                </p>
+                <p class="text-sm text-gray-500">
+                    Klik op buttons om te testen • Gele achtergrond met zwarte pijl = Correcte Figma icon
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAlert(buttonType) {
+            alert(`✅ ${buttonType} button werkt perfect!\n\n🌶️ Met correcte Figma icon uit TABASCO design system`);
+            console.log(`Button geklikt: ${buttonType}`);
+        }
+    </script>
+</body>
+</html>
