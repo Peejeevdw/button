@@ -1,0 +1,441 @@
+import React from 'react';
+
+function IconFont({ property1 = "Default" }) {
+  return (
+    <div className="font-['Material_Symbols_Outlined:Regular',_sans-serif] leading-[0] not-italic relative size-full text-[24px] text-black text-center" data-name="Property 1=Default" data-node-id="3099:19017">
+      <div className="absolute flex flex-col justify-center left-1/2 size-6 top-1/2 translate-x-[-50%] translate-y-[-50%]" data-node-id="3099:19026">
+        <p className="leading-none">chevron_right</p>
+      </div>
+    </div>
+  );
+}
+
+function BttnCompactBold({ 
+  buttonText = "Button", 
+  type = "Filled", 
+  state = "Default", 
+  icon = "None", 
+  size = "Large",
+  onClick,
+  className = ""
+}) {
+  
+  // Base classes for all buttons
+  const baseClasses = "relative rounded-[12px] content-stretch flex items-center justify-center transition-colors duration-200 cursor-pointer";
+  
+  // Size-specific classes
+  const sizeClasses = {
+    Large: "py-2.5 text-[24px] gap-2.5",
+    Small: "py-2.5 text-[20px] gap-2.5"
+  };
+  
+  // Icon size classes
+  const iconSizeClasses = {
+    Large: "size-6",
+    Small: "size-5"
+  };
+  
+  // Type-specific styling
+  const getTypeClasses = () => {
+    switch (type) {
+      case "Filled":
+        return state === "Hover" 
+          ? "bg-[#242322] text-white" 
+          : "bg-black text-white";
+      
+      case "Stroke":
+        return state === "Hover"
+          ? "bg-[rgba(20,19,18,0)] text-black border-2 border-black"
+          : "bg-transparent text-black border-2 border-black";
+      
+      case "Text":
+      case "Text-no_icon":
+        return "bg-transparent text-black py-[9px]";
+      
+      case "subtile-text":
+        return "bg-transparent text-black";
+      
+      default:
+        return "bg-black text-white";
+    }
+  };
+  
+  // Padding classes based on icon position
+  const getPaddingClasses = () => {
+    if (icon === "only") return "p-[10px]";
+    
+    switch (icon) {
+      case "Left":
+        return size === "Large" ? "pl-2.5 pr-3" : "pl-2.5 pr-3";
+      case "Right":
+        return size === "Large" ? "pl-3 pr-2.5" : "pl-3 pr-2.5";
+      case "None":
+        return "px-3";
+      default:
+        return "px-3";
+    }
+  };
+  
+  // Font classes
+  const getFontClasses = () => {
+    if (type === "subtile-text") {
+      return size === "Large" 
+        ? "font-['PP_Right_Grotesk:Regular',_sans-serif] text-[18px] leading-[1.2]"
+        : "font-['PP_Right_Grotesk:Regular',_sans-serif] text-[14px] leading-[1.2]";
+    }
+    return "font-['PP_Right_Grotesk:Compact_Bold',_sans-serif] leading-none";
+  };
+  
+  // Render icon
+  const renderIcon = (position) => {
+    if (icon === "only") {
+      return (
+        <div className={`font-['Material_Symbols_Outlined:Bold',_sans-serif] ${size === 'Large' ? 'text-[28px]' : 'text-[20px]'}`}>
+          chevron_right
+        </div>
+      );
+    }
+    
+    if ((position === "left" && icon === "Left") || (position === "right" && icon === "Right")) {
+      if (type === "subtile-text") {
+        return (
+          <div className={`${iconSizeClasses[size]} font-['Material_Symbols_Outlined:Regular',_sans-serif] text-[24px]`}>
+            {icon === "Left" ? "chevron_left" : "chevron_right"}
+          </div>
+        );
+      }
+      
+      return (
+        <div className={`${iconSizeClasses[size]} overflow-clip relative`}>
+          <div className="absolute inset-0">
+            <div className="absolute flex items-center justify-center inset-[-15.39%_30.23%_-15.93%_-61.54%]">
+              <div className="flex-none rotate-[315deg] size-[24.142px]">
+                <div className="relative size-full">
+                  <svg viewBox="0 0 24 24" className="size-full" fill="currentColor">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+  
+  // Render text with underline for text types
+  const renderText = () => {
+    if (type === "Text" || type === "Text-no_icon" || type === "subtile-text") {
+      return (
+        <div className="content-stretch flex flex-col gap-px items-start justify-center relative shrink-0">
+          <div className={`${getFontClasses()} relative shrink-0 text-nowrap`}>
+            {buttonText}
+          </div>
+          <div className={`bg-black h-px shrink-0 w-full ${state === "Hover" ? "opacity-0" : ""}`} />
+        </div>
+      );
+    }
+    
+    return (
+      <div className={`${getFontClasses()} relative shrink-0 text-nowrap`}>
+        {buttonText}
+      </div>
+    );
+  };
+  
+  const combinedClasses = `${baseClasses} ${sizeClasses[size]} ${getTypeClasses()} ${getPaddingClasses()} ${className}`;
+  
+  return (
+    <button 
+      className={combinedClasses}
+      onClick={onClick}
+      data-name={`Type=${type}, State=${state}, Icon=${icon}, Size=${size}`}
+    >
+      {icon === "only" ? (
+        renderIcon("left")
+      ) : (
+        <>
+          {renderIcon("left")}
+          {renderText()}
+          {renderIcon("right")}
+        </>
+      )}
+    </button>
+  );
+}
+
+// Main export component with examples
+export default function ButtonsComponent() {
+  return (
+    <div className="p-8 space-y-8 bg-gray-50 min-h-screen">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8 text-gray-900">Button Component System</h1>
+        
+        {/* Filled Buttons */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-gray-800">Filled Buttons</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Default</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Default Button" 
+                  type="Filled" 
+                  state="Default" 
+                  icon="None" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">With Left Icon</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Left Icon" 
+                  type="Filled" 
+                  state="Default" 
+                  icon="Left" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">With Right Icon</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Right Icon" 
+                  type="Filled" 
+                  state="Default" 
+                  icon="Right" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stroke Buttons */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-gray-800">Stroke Buttons</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Default</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Stroke Button" 
+                  type="Stroke" 
+                  state="Default" 
+                  icon="None" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">With Left Icon</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Left Icon" 
+                  type="Stroke" 
+                  state="Default" 
+                  icon="Left" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">With Right Icon</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Right Icon" 
+                  type="Stroke" 
+                  state="Default" 
+                  icon="Right" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Text Buttons */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-gray-800">Text Buttons</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Text Only</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Text Button" 
+                  type="Text-no_icon" 
+                  state="Default" 
+                  icon="None" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">With Left Icon</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Left Icon" 
+                  type="Text" 
+                  state="Default" 
+                  icon="Left" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">With Right Icon</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Right Icon" 
+                  type="Text" 
+                  state="Default" 
+                  icon="Right" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Subtle Text Buttons */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-gray-800">Subtle Text Buttons</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Subtle Text</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Subtle Text" 
+                  type="subtile-text" 
+                  state="Default" 
+                  icon="None" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">With Left Icon</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Left Icon" 
+                  type="subtile-text" 
+                  state="Default" 
+                  icon="Left" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">With Right Icon</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Right Icon" 
+                  type="subtile-text" 
+                  state="Default" 
+                  icon="Right" 
+                  size="Large" 
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Small Size Examples */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-gray-800">Small Size Buttons</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Small Filled</p>
+              <div className="w-40 h-10">
+                <BttnCompactBold 
+                  buttonText="Small Filled" 
+                  type="Filled" 
+                  state="Default" 
+                  icon="None" 
+                  size="Small" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Small Stroke</p>
+              <div className="w-40 h-10">
+                <BttnCompactBold 
+                  buttonText="Small Stroke" 
+                  type="Stroke" 
+                  state="Default" 
+                  icon="None" 
+                  size="Small" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Small Text</p>
+              <div className="w-40 h-10">
+                <BttnCompactBold 
+                  buttonText="Small Text" 
+                  type="Text-no_icon" 
+                  state="Default" 
+                  icon="None" 
+                  size="Small" 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Icon Only</p>
+              <div className="w-12 h-10">
+                <BttnCompactBold 
+                  type="Filled" 
+                  state="Default" 
+                  icon="only" 
+                  size="Small" 
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Interactive Examples */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-gray-800">Interactive Examples</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Click to see hover state</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Hover Me" 
+                  type="Filled" 
+                  state="Default" 
+                  icon="Right" 
+                  size="Large"
+                  className="hover:bg-[#242322]"
+                  onClick={() => alert('Button clicked!')}
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-gray-600">Stroke button with hover</p>
+              <div className="w-48 h-12">
+                <BttnCompactBold 
+                  buttonText="Hover Effect" 
+                  type="Stroke" 
+                  state="Default" 
+                  icon="Left" 
+                  size="Large"
+                  className="hover:bg-[rgba(20,19,18,0.05)]"
+                  onClick={() => alert('Stroke button clicked!')}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
+
+// Export the main component and individual button components
+export { BttnCompactBold, IconFont };
