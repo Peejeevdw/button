@@ -3,9 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
     <title>TABASCO Button Components - Figma Icons</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Password Protection Script -->
+    <script>
+        // Configuration
+        const CORRECT_PASSWORD = 'T4b4sc0'; // Change this to your desired password
+        const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+        
+        function checkAccess() {
+            const access = localStorage.getItem('tabasco_access');
+            const accessTime = localStorage.getItem('tabasco_access_time');
+            
+            if (access === 'granted' && accessTime) {
+                const timeElapsed = Date.now() - parseInt(accessTime);
+                if (timeElapsed < SESSION_DURATION) {
+                    return true; // Still valid
+                }
+            }
+            
+            // Clear expired access
+            localStorage.removeItem('tabasco_access');
+            localStorage.removeItem('tabasco_access_time');
+            return false;
+        }
+        
+        function grantAccess() {
+            localStorage.setItem('tabasco_access', 'granted');
+            localStorage.setItem('tabasco_access_time', Date.now().toString());
+            showContent();
+        }
+        
+        function showContent() {
+            document.getElementById('password-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }
+        
+        function showPasswordScreen() {
+            document.getElementById('password-screen').style.display = 'flex';
+            document.getElementById('main-content').style.display = 'none';
+        }
+        
+        function validatePassword() {
+            const input = document.getElementById('password-input');
+            const errorMsg = document.getElementById('error-message');
+            
+            if (input.value === CORRECT_PASSWORD) {
+                grantAccess();
+                input.value = '';
+                errorMsg.style.display = 'none';
+            } else {
+                errorMsg.style.display = 'block';
+                input.value = '';
+                input.focus();
+                
+                // Add shake animation
+                input.classList.add('shake');
+                setTimeout(() => input.classList.remove('shake'), 500);
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (checkAccess()) {
+                showContent();
+            } else {
+                showPasswordScreen();
+            }
+            
+            // Enter key support
+            document.getElementById('password-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    validatePassword();
+                }
+            });
+        });
+    </script>
     
     <style>
         /* PP Right Grotesk Compact WOFF Fonts */
@@ -376,10 +452,131 @@
                 min-width: 220px;
             }
         }
+
+        /* Password Screen Styles */
+        #password-screen {
+            background: linear-gradient(135deg, #FFC421 0%, #FFB800 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            font-size: 18px;
+            font-family: 'PP Right Grotesk Compact', 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 1rem 0;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #FFC421;
+            box-shadow: 0 0 0 3px rgba(255, 196, 33, 0.1);
+        }
+
+        .password-btn {
+            background: #000000;
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-family: 'PP Right Grotesk Compact', 'Inter', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .password-btn:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .tabasco-logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #000000;
+            margin-bottom: 1rem;
+        }
+
+        /* Hide main content initially */
+        #main-content {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
-    <div class="min-h-screen p-8">
+    <!-- Password Protection Screen -->
+    <div id="password-screen">
+        <div class="password-container">
+            <div class="tabasco-logo font-pp-right">TABASCO</div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 font-pp-right">Buttons</h2>
+            <p class="text-gray-600 mb-6 font-pp-right-normal">Enter password to view the button components</p>
+            
+            <input 
+                type="password" 
+                id="password-input" 
+                class="password-input" 
+                placeholder="Enter password..."
+                autocomplete="off"
+            />
+            
+            <div id="error-message" class="error-message" style="display: none;">
+                ❌ Incorrect password. Please try again.
+            </div>
+            
+            <button onclick="validatePassword()" class="password-btn">
+                Access
+            </button>
+            
+            <div class="text-xs text-gray-500 mt-4 font-pp-right-normal">
+                Session expires after 24 hours
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden by default) -->
+    <div id="main-content" class="min-h-screen p-8">
         <div class="max-w-6xl mx-auto">
             <!-- Header -->
             <div class="text-center mb-12">
@@ -694,6 +891,25 @@
             function showAlert(type) {
                 alert('Je hebt geklikt op: ' + type);
             }
+            
+            // Add logout functionality
+            function logout() {
+                localStorage.removeItem('tabasco_access');
+                localStorage.removeItem('tabasco_access_time');
+                location.reload();
+            }
+            
+            // Add logout button to header
+            document.addEventListener('DOMContentLoaded', function() {
+                const header = document.querySelector('#main-content h1');
+                if (header) {
+                    const logoutBtn = document.createElement('button');
+                    logoutBtn.innerHTML = '🔓 Logout';
+                    logoutBtn.className = 'text-sm bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors font-pp-right ml-4';
+                    logoutBtn.onclick = logout;
+                    header.parentNode.appendChild(logoutBtn);
+                }
+            });
             
             // Helper function to create animated icon
             function createAnimatedIcon(squircleColor, arrowColor, isBackward = false) {
